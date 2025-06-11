@@ -40,14 +40,14 @@ root_agent = Agent(
     - image_summarizer
     - flame_graph_summarizer
     - cypher_query_executor
-    - 
+    
 
    
     You also have access to the following tools:
     
     - mitigation_finder
     """,
-    sub_agents=[cypher_query_generator, log_summarizer,neo4j_open_connect,article_summarizer, youtube_summarizer, image_summarizer, flame_graph_summarizer, cypher_query_executor],
+    sub_agents=[cypher_query_generator, log_summarizer, neo4j_open_connect,article_summarizer, youtube_summarizer, image_summarizer, flame_graph_summarizer, cypher_query_executor],
     tools=[
         AgentTool(mitigation_finder),
     ],
