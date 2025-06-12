@@ -1,8 +1,0 @@
-Neo4j Cypher query to find the path:
-MATCH (n:TTP {ID:"T1027"})-[r]-(x)< -[w]-(y)< -[d]-(m) RETURN n,r,x,w,y,d,m 
-
-
-
-
-
-
