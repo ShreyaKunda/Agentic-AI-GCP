@@ -9,7 +9,7 @@ An Agentic AI System that can perform various tasks like fetching information, g
    - [Setting Up API Keys](#setting-up-api-keys)
 2. [Downloading the Repository](#downloading-the-repository)
 3. [Folder Structure and Organization](#folder-structure-and-organization)
-4. [Creating and Working with Agents
+4. Creating and Working with Agents
 5. [How to Use](#how-to-use)
 
 ---
