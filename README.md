@@ -1,6 +1,6 @@
 # Agentic AI
 
-An Agentic AI System that can perform various tasks like fetching information, generating Cypher queries, and summarizing logs, images, and videos.
+An Agentic AI System that can perform various tasks like fetching information, generating Cypher queries, summarizing logs, images, and videos, and gathering Threat Intelligence.
 
 ## Table of Contents
 
@@ -9,8 +9,8 @@ An Agentic AI System that can perform various tasks like fetching information, g
    - [Setting Up API Keys](#setting-up-api-keys)
 2. [Downloading the Repository](#downloading-the-repository)
 3. [Folder Structure and Organization](#folder-structure-and-organization)
-4. Creating and Working with Agents
-5. [How to Use](#how-to-use)
+4. [Creating and Working with Agents](#creating-and-working-with-agents)
+5. [More Information](#more-information)
 
 ---
 
@@ -52,13 +52,15 @@ GOOGLE_API_KEY=your_api_key_here
 ```
 
 ## Downloading the Repository
-To get started with Agentic AI, you'll first need to clone repository by following these steps:
- 
-```bash
-git clone https://github.com/ShreyaKunda/Agentic-AI.git
-```
+To get started with Agentic AI, you'll first need to clone this repository or download the zip folder from the dropdown that is available.
 
 ## Folder Structure and Organization
 In ADK, every agent is organized within its own folder. The system necessitates a single root agent, which is capable of having multiple subordinate agents. Below is a sample file structure:
 
 <img width="350" height="500" alt="image" src="https://github.com/user-attachments/assets/1a39b433-2f7d-4380-aeaa-604dff6f4e1f" />
+
+## Creating and Working with Agents
+In an Agentic AI system, agents are the building blocks that allow the system to function autonomously. Each agent is designed to perform specific tasks and can work independently or in conjunction with other agents to achieve complex objectives. Parallel and Sequential Execution: Agents can perform tasks in parallel, making the system efficient and capable of handling multiple requests simultaneously. They can also operate in a sequential manner, where tasks are dependent on the output or completion of preceding tasks. This flexibility allows for tailored workflows depending on the complexity and nature of the job. New agents can be developed under the current root agent, each tailored to handle specific roles. Each root agent requires a .env file where the API key can be provided and can be used for all other sub agents across the system.
+
+## More Information
+Further information can be found at https://confluence.honeywell.com/x/85UTV
