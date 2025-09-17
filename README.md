@@ -62,5 +62,4 @@ In ADK, every agent is organized within its own folder. The system necessitates 
 ## Creating and Working with Agents
 In an Agentic AI system, agents are the building blocks that allow the system to function autonomously. Each agent is designed to perform specific tasks and can work independently or in conjunction with other agents to achieve complex objectives. Parallel and Sequential Execution: Agents can perform tasks in parallel, making the system efficient and capable of handling multiple requests simultaneously. They can also operate in a sequential manner, where tasks are dependent on the output or completion of preceding tasks. This flexibility allows for tailored workflows depending on the complexity and nature of the job. New agents can be developed under the current root agent, each tailored to handle specific roles. Each root agent requires a .env file where the API key can be provided and can be used for all other sub agents across the system.
 
-## More Information
-Further information can be found at https://confluence.honeywell.com/x/85UTV
+
