@@ -647,7 +647,8 @@ def main():
                                 if m:
                                     url = m.group(0)
                                     urls_found.append(url)
-                                    insert_line = f"\n\nSource URL: {url}\n"
+                                    # insert as a Markdown link so Streamlit renders it clickable
+                                    insert_line = f"\n\nSource URL: [{url}]({url})\n"
                                 # reconstruct this part: header line + optional insert + block
                                 parts.append(header_line + '\n' + insert_line + block)
                                 last_end = next_start
@@ -721,7 +722,8 @@ def main():
             st.markdown("---")
             
             if st.session_state.comprehensive_report:
-                st.markdown(st.session_state.comprehensive_report)
+                # render comprehensive report as Markdown/HTML so inserted Source URL links are clickable
+                st.markdown(st.session_state.comprehensive_report, unsafe_allow_html=True)
                 # Show per-platform source URLs (if available)
                 all_platform_urls = []
                 for platform, data in st.session_state.research_results.items():
@@ -730,7 +732,8 @@ def main():
                         if urls:
                             st.markdown(f"### {platform} - Source URLs")
                             for u in urls:
-                                st.markdown(f"- [{u}]({u})")
+                                # use an HTML anchor with target to ensure it opens
+                                st.markdown(f'- <a href="{u}" target="_blank" rel="noopener noreferrer">{u}</a>', unsafe_allow_html=True)
                             all_platform_urls.extend(urls)
                 # Provide a downloadable PDF of the full comprehensive report
                 try:
@@ -848,12 +851,22 @@ def main():
                                     pdf_obj.set_font('Arial', size=11)
                                     pdf_obj.ln(1)
                                 elif stripped.startswith('- '):
-                                    pdf_obj.set_x(pdf_obj.l_margin + 6)
-                                    pdf_obj.multi_cell(0, line_height, sanitize_text(stripped[2:].strip()))
+                                    # nicer bullet with indent
+                                    text_body = sanitize_text(stripped[2:].strip())
+                                    pdf_obj.set_x(pdf_obj.l_margin + 8)
+                                    # small bullet marker
+                                    pdf_obj.set_font('Arial', size=11)
+                                    pdf_obj.cell(4, line_height, u"•")
+                                    pdf_obj.multi_cell(0, line_height, text_body, align='J')
                                 elif stripped == '':
                                     pdf_obj.ln(3)
                                 else:
-                                    pdf_obj.multi_cell(0, line_height, sanitize_text(line))
+                                    # try to justify paragraphs for a more polished look
+                                    try:
+                                        pdf_obj.multi_cell(0, line_height, sanitize_text(line), align='J')
+                                    except TypeError:
+                                        # FPDF version lacking align param: fall back to default
+                                        pdf_obj.multi_cell(0, line_height, sanitize_text(line))
 
                         # First, extract links and number them in the content
                         numbered_content, links = extract_and_number_links(content)
@@ -979,8 +992,11 @@ def main():
                                 links.append((u, u))
 
                             paragraph = sanitize_text(paragraph)
-                            # print paragraph with wrapping
-                            pdf_obj.multi_cell(0, line_height, paragraph)
+                            # print paragraph with wrapping and try justification
+                            try:
+                                pdf_obj.multi_cell(0, line_height, paragraph, align='J')
+                            except TypeError:
+                                pdf_obj.multi_cell(0, line_height, paragraph)
 
                             # print links below the paragraph as clickable entries
                             for label, url in links:
