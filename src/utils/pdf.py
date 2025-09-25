@@ -6,7 +6,7 @@ st.title("Gemini Technical Research Agent")
 
 topic = st.text_input("Enter a technical topic (e.g., DMA Attacks)")
 
-GEMINI_API_KEY = "AIzaSyDz0w1AFsub5z8yz660obdjq1HFIDaP1so"  # Replace with your actual Gemini API key
+GEMINI_API_KEY = "your api key"  # Replace with your actual Gemini API key
 
 def gemini_report(topic, api_key):
     instructions = (
