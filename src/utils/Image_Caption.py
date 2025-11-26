@@ -2,7 +2,7 @@ from google.genai import types
 from google.genai.client import Client
 
 # Create a client instance
-client = Client(api_key="AIzaSyDWJ-4pN-hZpoA2KBqtmMMu-Q6h1WEFjuo")
+client = Client(api_key="Your API Key")
 
 # Load the image file
 with open('/home/administrator/workspace/Shreya/Agentic_AI/Agentic_AI/sample.png', 'rb') as f:
