@@ -5,9 +5,9 @@ from manager.sub_agents.cypher_query_generator.agent import cypher_query_generat
 from manager.sub_agents.log_summarizer.agent import log_summarizer
 from manager.sub_agents.neo4j_open_connect.agent import neo4j_open_connect
 from manager.sub_agents.mitigation_finder.agent import mitigation_finder
+from manager.sub_agents.bdsa_cve_mitigation_agent.agent import bdsa_cve_mitigation_agent
 from manager.sub_agents.article_summarizer.agent import article_summarizer
 from manager.sub_agents.youtube_summarizer.agent import youtube_summarizer
-from manager.sub_agents.image_summarizer.agent import image_summarizer
 from manager.sub_agents.flame_graph_summarizer.agent import flame_graph_summarizer
 from manager.sub_agents.cypher_query_executor.agent import cypher_query_executor
 from manager.sub_agents.threat_generator.agent import threat_generator
@@ -50,6 +50,7 @@ The below is your Operational Workflow:
     l. incident_response_agent: Suggests and automates incident response actions based on threat chains and risk.
     m. threat_intelligence_aggregator: Aggregates and correlates the latest threat intelligence with existing threat chains.
     n. mitigation_finder: (Special case) Identifies appropriate mitigation strategies for threat response.
+    o. bdsa_cve_mitigation_agent: Converts a BDSA ID to a CVE and provides clear actionable mitigation.
 
 
 Mitigation Handling
@@ -72,9 +73,11 @@ mitigation_finder.
         threat_chain_visualizer,
         incident_response_agent,
         threat_intelligence_aggregator,
+        bdsa_cve_mitigation_agent,
     ],
     tools=[
         AgentTool(mitigation_finder),
+        AgentTool(bdsa_cve_mitigation_agent),
     ],
 )
 
